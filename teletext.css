@@ -1,0 +1,120 @@
+@charset utf-8;
+
+/*
+ * Setup
+ */
+
+html, body, div, p, a, ul, li,
+table, td, tbody, th, tr,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: black;
+    color: white;
+
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+h1 {
+}
+
+/*
+ * Page Construct
+ */
+.tv,
+.tv-front {
+    width: 1160px;
+    height: 822px;
+}
+.tv {
+    position: absolute;
+    left: 50%;
+    margin: 32px 0 0 -580px;
+}
+    .tv-front {
+        display: block;
+        background: url(./images/tv-outside.png);
+
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .tv-front-inside {
+        position: absolute;
+        top: 20px;
+        left: 23px;
+
+        background: url(./images/tv-inside.png);
+
+        width: 1114px;
+        height: 730px;
+    }
+    .tv-glass {
+        width : 691px;
+        height: 556px;
+
+        background: rgba( 220, 220, 255, 0.2 );
+        position: absolute;
+        left: 117px;
+        top : 109px;
+
+        border-top-left-radius: 140px 100px;
+        border-bottom-left-radius: 140px 100px;
+        border-top-right-radius: 140px 100px;
+        border-bottom-right-radius: 140px 100px;
+
+        box-shadow: inset 0 0 240px rgba( 0, 0, 0, 0.5 );
+    }
+    .teletext {
+        position: absolute;
+
+        left: 141px;
+        top : 147px;
+
+        width : 640px;
+        height: 480px;
+    }
+.page,
+.footer,
+.top-bar {
+    float: left;
+    clear: both;
+}
+
+.top-bar,
+.footer {
+    width: 100%;
+    font-size: 16px;
+}
+.top-bar {
+    background: black;
+    color: white;
+}
+    .top-bar > div {
+        text-align: center;
+        float: left;
+        clear: none;
+        padding: 1px 0;
+    }
+    .top-page-title {
+        background: blue;
+        color: yellow;
+        width: 210px;
+    }
+    .top-page-number-user {
+        width: 80px;
+    }
+    .top-page-number {
+        width: 80px;
+    }
+    .top-page-date {
+        width: 110px;
+    }
+    .top-page-time {
+        color: yellow;
+        width: 160px;
+    }
