@@ -47,7 +47,7 @@ $(function() {
                 var page = pages[ number ];
 
                 if ( page ) {
-                    teletext.screen.setNow( number, page );
+                    teletext.screen.set( number, page );
                 }
             }
         },
@@ -61,18 +61,32 @@ $(function() {
          */
         screen: {
             buildPage: function(data) {
-                var type = data.type || 'div';
-                var page = $('<' + type + '>');
+                var page,
+                    contents;
 
-                iter( data.classes, function(klass) {
-                    page.addClass( klass );
-                } );
+                if ( data instanceof Array ) {
+                    page = $('<div>');
+                    contents = data;
+                } else {
+                    var type = data.type || 'div';
+                    page = $('<' + type + '>');
 
-                iter( data.css, function(key, val) {
-                    page.css( key, val );
-                } );
+                    iter( data.classes, function(klass) {
+                        page.addClass( klass );
+                    } );
 
-                iter( data.contents, function(child) {
+                    iter( data.css, function(key, val) {
+                        page.css( key, val );
+                    } );
+
+                    iter( data.url || data.href, function(url) {
+                        page.attr( 'href', url );
+                    } );
+
+                    contents = data.contents;
+                }
+
+                iter( contents, function(child) {
                     if ( typeof child === 'string' || child instanceof String ) {
                         page.append( child );
                     } else {
