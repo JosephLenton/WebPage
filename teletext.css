@@ -12,7 +12,7 @@ img {
 }
 
 body {
-    background: black;
+    background: white;
     color: white;
 
     font-size: 14px;
@@ -35,6 +35,17 @@ h1 {
     left: 50%;
     margin: 32px 0 0 -580px;
 }
+    .tv-back,
+    .tv-glass {
+        position: absolute;
+
+        background: black;
+        width : 691px;
+        height: 556px;
+
+        left: 117px;
+        top : 109px;
+    }
     .tv-front {
         display: block;
         background: url(./images/tv-outside.png);
@@ -54,13 +65,7 @@ h1 {
         height: 730px;
     }
     .tv-glass {
-        width : 691px;
-        height: 556px;
-
         background: rgba( 220, 220, 255, 0.2 );
-        position: absolute;
-        left: 117px;
-        top : 109px;
 
         border-top-left-radius: 140px 100px;
         border-bottom-left-radius: 140px 100px;
