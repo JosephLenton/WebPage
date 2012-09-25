@@ -18,6 +18,9 @@ $(function() {
 
     var pages = [];
 
+    var KEY_0 = 48,
+        KEY_9 = 57;
+
     var teletext = window['teletext'] = {
         addPage: function( number, data ) {
             pages[number] = data;
@@ -26,24 +29,51 @@ $(function() {
         dial: {
             init: function() {
                 this.timeout  = null;
+                this.numberSoFar = null;
+
+                $('body').keypress( function(ev) {
+                    if ( ev.which >= KEY_0 && ev.which <= KEY_9 ) {
+                        var key = ev.which - KEY_0;
+
+                        teletext.dial.inputNumber( key );
+                    }
+                } );
+            },
+
+            inputNumber: function( number ) {
+                if ( this.numberSoFar === null ) {
+                    this.numberSoFar = '' + number;
+                } else {
+                    this.numberSoFar += number;
+                }
+
+                teletext.topbar.setUserNumber( this.numberSoFar );
+
+                if ( this.numberSoFar.length === 3 ) {
+                    this.set( this.numberSoFar );
+                    this.numberSoFar = null;
+                }
             },
 
             set: function( number ) {
                 var self = this;
 
                 if ( this.timeout !== null ) {
-                    this.timeout = setTimeout( function() {
-                        teletext.dial.setNow( number, data );
-                    }, 500 );
+                    clearTimeout( this.timeout );
                 }
+
+                this.timeout = setTimeout( function() {
+                    teletext.dial.setNow( number );
+                }, 1000 );
             },
             
             setNow: function( number ) {
                 if ( this.timeout !== null ) {
-                    this.clearTimeout( this.timeout );
+                    clearTimeout( this.timeout );
                     this.timeout = null;
                 }
 
+                number = parseInt(number);
                 var page = pages[ number ];
 
                 if ( page ) {
@@ -60,6 +90,8 @@ $(function() {
          * and then displays that data.
          */
         screen: {
+            blinkTimer: null,
+
             buildPage: function(data) {
                 var page,
                     contents;
@@ -97,10 +129,34 @@ $(function() {
                 return page;
             },
 
+            setupBlinkTimer: function( page ) {
+                if ( this.blinkTimer !== null ) {
+                    clearInterval( this.blinkTimer );
+                }
+
+                var blinks  = page.find( '.blink' ),
+                    visible = true;
+                this.blinkTimer = setInterval( function() {
+                    if ( visible ) {
+                        blinks.css('visibility', 'hidden');
+                    } else {
+                        blinks.css('visibility', 'visible');
+                    }
+
+                    visible = ! visible;
+                }, 1200 );
+
+                return page;
+            },
+
+
             set: function(number, data) {
+                teletext.topbar.setUserNumber( number );
                 teletext.topbar.setNumber( number );
 
-                var newContents = teletext.screen.buildPage( data );
+                var newContents = teletext.screen.setupBlinkTimer(
+                        teletext.screen.buildPage( data )
+                );
                 var page = $('.teletext-page');
 
                 var offset = 100;
@@ -111,7 +167,7 @@ $(function() {
                         thisContents.css('visibility', 'visible');
                     }, offset );
 
-                    offset += 100;
+                    offset += 400;
                 } );
 
                 page.empty();
@@ -138,6 +194,14 @@ $(function() {
                 setInterval( updateDateTime, 1000 );
 
                 updateDateTime();
+            },
+
+            setUserNumber: function( number ) {
+                while ( number.length < 3 ) {
+                    number += ' ';
+                }
+
+                $('.top-page-number-user').text( 'p' + number );
             },
 
             setNumber: function( number ) {

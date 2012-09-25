@@ -97,6 +97,6 @@ $(function() {
             }
     ] );
 
-    teletext.dial.setNow( 100 );
+    teletext.dial.setNow( 600 );
 });
 

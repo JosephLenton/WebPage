@@ -36,15 +36,6 @@ a:hover {
 h1 {
 }
 
-@-webkit-keyframes blink-anim {
-    0% {
-        opacity: 100%;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
 .block {
     display: block;
 }
@@ -52,12 +43,6 @@ h1 {
     text-align: center;
 }
 
-.blink {
-    -webkit-animation-duration: 2.5s;
-    -webkit-animation-name: blink-anim;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: step-end;
-}
 .pink-back {
     background: #ff00fe;
 }
@@ -216,6 +201,16 @@ h1 {
     .background {
         position: absolute;
 
+        background: url(images/background.png);
+        opacity: 0.6;
+        height: 800px;
+        width : 100%;
+        display: block;
+
+        top: 100px;
+        left: 0;
+        /*
+
         min-width: 100%;
         padding: 0 100px;
         margin-left: -100px;
@@ -223,16 +218,18 @@ h1 {
         height: 730px;
         display: block;
 
-        background: #f2f5f6; /* Old browsers */
-        background: -moz-linear-gradient(top,  #f2f5f6 0%, #e3eaed 37%, #d7dfe2 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#d7dfe2)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%); /* W3C */
+        background: #f2f5f6;
+        background: -moz-linear-gradient(top,  #f2f5f6 0%, #e3eaed 37%, #d7dfe2 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#d7dfe2));
+        background: -webkit-linear-gradient(top,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%);
+        background: -o-linear-gradient(top,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%);
+        background: -ms-linear-gradient(top,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%);
+        background: linear-gradient(to bottom,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%);
 
         -webkit-box-shadow: 0 0 250px rgba( 0, 0, 50, 0.4 );
+        */
     }
+
 
 /*
  * Page Construct
@@ -340,6 +337,7 @@ h1 {
         width: 210px;
     }
     .top-page-number-user {
+        white-space: pre;
         width: 80px;
     }
     .top-page-number {
