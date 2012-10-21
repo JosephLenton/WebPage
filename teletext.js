@@ -92,39 +92,57 @@ $(function() {
         screen: {
             blinkTimer: null,
 
-            buildPage: function(data) {
+            buildPage: function(data, isRootPage) {
                 var page,
                     contents;
 
-                if ( data instanceof Array ) {
+                if ( data === null ) {
+                    return $('<br>');
+                } else if ( data instanceof Array ) {
                     page = $('<div>');
                     contents = data;
                 } else {
                     var type = data.type || 'div';
+
+                    if ( data.img ) {
+                        type = 'img';
+                    }
                     page = $('<' + type + '>');
+
+                    if ( data.img ) {
+                        page.attr('src', data.img);
+                    }
 
                     iter( data.classes, function(klass) {
                         page.addClass( klass );
                     } );
 
-                    iter( data.css, function(key, val) {
-                        page.css( key, val );
-                    } );
+                    if ( typeof data.css === 'string' ) {
+                        page.addClass( data.css );
+                    } else {
+                        iter( data.css, function(key, val) {
+                            page.css( key, val );
+                        } );
+                    }
 
                     iter( data.url || data.href, function(url) {
                         page.attr( 'href', url );
                     } );
 
-                    contents = data.contents;
+                    contents = data.content || data.contents;
                 }
 
                 iter( contents, function(child) {
                     if ( typeof child === 'string' || child instanceof String ) {
                         page.append( child );
                     } else {
-                        page.append( teletext.screen.buildPage(child) );
+                        page.append( teletext.screen.buildPage(child, false) );
                     }
                 } );
+
+                if ( isRootPage ) {
+                    page.addClass( 'teletext-internal-page' );
+                }
 
                 return page;
             },
@@ -144,7 +162,7 @@ $(function() {
                     }
 
                     visible = ! visible;
-                }, 1200 );
+                }, 1000 );
 
                 return page;
             },
@@ -155,7 +173,7 @@ $(function() {
                 teletext.topbar.setNumber( number );
 
                 var newContents = teletext.screen.setupBlinkTimer(
-                        teletext.screen.buildPage( data )
+                        teletext.screen.buildPage( data, true )
                 );
                 var page = $('.teletext-page');
 

@@ -46,6 +46,9 @@ h1 {
 .pink-back {
     background: #ff00fe;
 }
+.white-back {
+    background: whitesmoke;
+}
 .red-back {
     background: red;
 }
@@ -59,10 +62,17 @@ h1 {
     background: linear-gradient(to bottom,  #ff0000 34%,#002eff 35%,#002eff 65%,#ff0000 66%); /* W3C */
 }
 .blue-back {
-    background: #002eff;
+    background: blue;
+}
+.gray-back,
+.grey-back {
+    background: #222;
 }
 .white-back {
     background: white;
+}
+.black-back {
+    background: black;
 }
 
 .white {
@@ -74,22 +84,45 @@ h1 {
 .yellow {
     color: yellow;
 }
+.orange {
+    color: #ff7f00;
+}
+.orange-back {
+    background: #ff7f00;
+}
 
+.full-width {
+    width: 100%;
+}
+
+.header-left-bar,
 .index-bar,
+.pmc-header,
 .header-bar {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
     padding-top: 4px;
-    margin-top: 38px;
-    text-align: center;
-    width: 100%;
-
     font-size:    60px;
     line-height: 100px;
+}
+
+.header-left-bar {
+    text-align: left;
+    border-bottom: 8px solid black;
+    display: inline;
+}
+
+.index-bar,
+.pmc-header,
+.header-bar {
+    width: 100%;
+
+    text-align: center;
     text-transform: uppercase;
 
     text-shadow:
+            /* top-left */
             -1px -1px 0 #000,
             -2px -2px 0 #000,
             -3px -3px 0 #000,
@@ -97,6 +130,15 @@ h1 {
             -5px -5px 0 #000,
             -6px -6px 0 #000,
 
+            /* top */
+             0   -1px 0 #000,
+             0   -2px 0 #000,
+             0   -3px 0 #000,
+             0   -4px 0 #000,
+             0   -5px 0 #000,
+             0   -6px 0 #000,
+
+             /* top-right */
              1px -1px 0 #000,
              2px -2px 0 #000,
              3px -3px 0 #000,
@@ -104,6 +146,31 @@ h1 {
              5px -5px 0 #000,
              6px -6px 0 #000,
 
+             /* right */
+             1px  0   0 #000,
+             2px  0   0 #000,
+             3px  0   0 #000,
+             4px  0   0 #000,
+             5px  0   0 #000,
+             6px  0   0 #000,
+
+             /* bottom-right */
+             1px  1px 0 #000,
+             2px  2px 0 #000,
+             3px  3px 0 #000,
+             4px  4px 0 #000,
+             5px  5px 0 #000,
+             6px  6px 0 #000,
+
+             /* bottom */
+             0    1px 0 #000,
+             0    2px 0 #000,
+             0    3px 0 #000,
+             0    4px 0 #000,
+             0    5px 0 #000,
+             0    6px 0 #000,
+
+             /* bottom-left */
             -1px  1px 0 #000,
             -2px  2px 0 #000,
             -3px  3px 0 #000,
@@ -111,27 +178,167 @@ h1 {
             -5px  5px 0 #000,
             -6px  6px 0 #000,
 
-             1px  1px 0 #000,
-             2px  2px 0 #000,
-             3px  3px 0 #000,
-             4px  4px 0 #000,
-             5px  5px 0 #000,
-             6px  6px 0 #000;
+             /* left */
+            -1px  0   0 #000,
+            -2px  0   0 #000,
+            -3px  0   0 #000,
+            -4px  0   0 #000,
+            -5px  0   0 #000,
+            -6px  0   0 #000;
 }
 
+.ad-box,
+.ad-bottom {
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+}
 .ad-bottom {
     position: absolute;
     bottom: 8px;
     width: 100%;
-
-    line-height: 40px;
-    font-size: 24px;
-    text-align: center;
 }
 
 /*
  * Page Specific components.
  */
+
+.pmc-back {
+    background: #415168;
+}
+.pmc-header {
+    font-size: 54px;
+    text-shadow:
+            /* top-left */
+            -1px -1px 0 #F06,
+            -2px -2px 0 #F06,
+            -3px -3px 0 #F06,
+            -4px -4px 0 #F06,
+            -5px -5px 0 #F06,
+
+            /* top */
+             0   -1px 0 #F06,
+             0   -2px 0 #F06,
+             0   -3px 0 #F06,
+             0   -4px 0 #F06,
+             0   -5px 0 #F06,
+
+             /* top-right */
+             1px -1px 0 #F06,
+             2px -2px 0 #F06,
+             3px -3px 0 #F06,
+             4px -4px 0 #F06,
+             5px -5px 0 #F06,
+
+             /* right */
+             1px  0   0 #F06,
+             2px  0   0 #F06,
+             3px  0   0 #F06,
+             4px  0   0 #F06,
+             5px  0   0 #F06,
+
+             /* bottom-right */
+             1px  1px 0 #F06,
+             2px  2px 0 #F06,
+             3px  3px 0 #F06,
+             4px  4px 0 #F06,
+             5px  5px 0 #F06,
+
+             /* bottom */
+             0    1px 0 #F06,
+             0    2px 0 #F06,
+             0    3px 0 #F06,
+             0    4px 0 #F06,
+             0    5px 0 #F06,
+
+             /* bottom-left */
+            -1px  1px 0 #F06,
+            -2px  2px 0 #F06,
+            -3px  3px 0 #F06,
+            -4px  4px 0 #F06,
+            -5px  5px 0 #F06,
+
+             /* left */
+            -1px  0   0 #F06,
+            -2px  0   0 #F06,
+            -3px  0   0 #F06,
+            -4px  0   0 #F06,
+            -5px  0   0 #F06,
+
+             0  7px #4c001f,
+             0  8px #4c001f,
+             0  9px #4c001f,
+             0 10px #4c001f,
+             0 11px #4c001f,
+             0 12px #4c001f,
+             0 13px #4c001f,
+             0 14px #4c001f,
+
+              7px -5px #4c001f,
+              7px -4px #4c001f,
+              8px -3px #4c001f,
+              8px -2px #4c001f,
+
+              9px -1px #4c001f,
+
+             -4px  7px #4c001f,
+             -4px  8px #4c001f,
+             -3px  9px #4c001f,
+             -3px 10px #4c001f,
+             -2px 11px #4c001f,
+             -2px 12px #4c001f,
+             -1px 13px #4c001f,
+             -1px 14px #4c001f,
+
+             7px 0 #4c001f,
+             8px 0 #4c001f,
+             9px 0 #4c001f,
+            10px 0 #4c001f,
+
+             7px 1px #4c001f,
+             8px 1px #4c001f,
+             9px 1px #4c001f,
+            10px 1px #4c001f,
+
+             7px 2px #4c001f,
+             8px 2px #4c001f,
+             9px 2px #4c001f,
+            10px 2px #4c001f,
+
+             7px 3px #4c001f,
+             8px 3px #4c001f,
+             9px 3px #4c001f,
+            10px 3px #4c001f,
+
+             7px 4px #4c001f,
+             8px 4px #4c001f,
+             9px 4px #4c001f,
+            10px 4px #4c001f,
+
+             7px 5px #4c001f,
+             8px 5px #4c001f,
+             9px 5px #4c001f,
+            10px 5px #4c001f,
+
+             7px 6px #4c001f,
+             8px 6px #4c001f,
+             9px 6px #4c001f,
+            10px 6px #4c001f,
+
+             7px 7px #4c001f,
+             8px 7px #4c001f,
+             9px 7px #4c001f,
+            10px 7px #4c001f,
+
+             7px  7px #4c001f,
+             7px  8px #4c001f,
+             8px  9px #4c001f,
+             8px 10px #4c001f,
+             9px 11px #4c001f,
+             9px 12px #4c001f,
+            10px 13px #4c001f,
+            10px 14px #4c001f;
+}
 
 .index-bar {
     background: #00ffff; /* Old browsers */
@@ -163,20 +370,39 @@ h1 {
         top: 9px;
     }
 
+.index-email {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 3px 12px;
+}
+
 .index-left {
     position: absolute;
     top: 260px;
     left: 9px;
     width: 300px;
 }
+.index-left-ad {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    padding-left : 48px;
+    padding-right: 48px;
+}
 .index-right {
     position: absolute;
     right :  9px;
-    bottom: 32px;
+    bottom:  0;
     white-space: pre;
     font-size  : 24px;
     line-height: 36px;
+    padding: 0 0 0 8px;
 }
+    .index-right > div { 
+        margin-left: -8px;
+        padding-left: 8px;
+    }
 .project-list {
     padding: 32px 18px 18px 18px;
     font-size: 32px;
@@ -184,6 +410,28 @@ h1 {
     line-height: 48px;
 }
 
+.cat-loan-right {
+    position: absolute;
+    text-align: justify;
+    right: 20px;
+    left: 320px;
+    top: 120px;
+}
+.cat-loan-img {
+    position: absolute;
+    left: 32px;
+    bottom: 0;
+    max-height: 360px;
+}
+
+.php-error-info {
+    margin-top: 18px;
+
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 24px 64px;
+    text-align: center;
+}
 
 /*
  *
@@ -201,16 +449,6 @@ h1 {
     .background {
         position: absolute;
 
-        background: url(images/background.png);
-        opacity: 0.6;
-        height: 800px;
-        width : 100%;
-        display: block;
-
-        top: 100px;
-        left: 0;
-        /*
-
         min-width: 100%;
         padding: 0 100px;
         margin-left: -100px;
@@ -227,7 +465,6 @@ h1 {
         background: linear-gradient(to bottom,  #f2f5f6 0%,#e3eaed 37%,#d7dfe2 100%);
 
         -webkit-box-shadow: 0 0 250px rgba( 0, 0, 50, 0.4 );
-        */
     }
 
 
@@ -309,17 +546,32 @@ h1 {
         width : 640px;
         height: 480px;
     }
-.page,
+    .teletext-page {
+        position: absolute;
+
+        top: 18px;
+        bottom: 18px;
+        left: 0;
+        right: 0;
+    }
+        .teletext-page > .teletext-internal-page {
+            position: absolute;
+
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
 .footer,
 .top-bar {
     float: left;
     clear: both;
 }
-
 .top-bar,
 .footer {
     width: 100%;
     font-size: 16px;
+    height: 18px;
 }
 .top-bar {
     background: black;

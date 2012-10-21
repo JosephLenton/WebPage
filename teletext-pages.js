@@ -14,12 +14,22 @@ $(function() {
                 contents: "blah blah blah, content goes here, blah blah"
             },
             {
+                type: 'a',
+                classes: 'index-email yellow blue-back',
+                content: 'jxl299@cs.bham.ac.uk',
+                href: 'mailto://jxl299@cs.bham.ac.uk'
+            },
+            {
                 classes: 'index-right yellow',
                 contents: [
                         "104 About\n",
                         "200 My PHD\n",
                         "390 Horses\n",
-                        "600 Projects\n"
+                        "600 Projects\n",
+                        {
+                            classes: [ 'red-back', 'white' ],
+                            content: '611 Play!'
+                        }
                 ]
             }
     ] );
@@ -34,12 +44,30 @@ $(function() {
     /**
      * 300 - Adverts and games
      */
-    teletext.addPage( 386, [
-            {
-                classes: "header-bar white blue-back",
-                contents: "CAT LOANS!"
-            }
-    ] );
+    teletext.addPage( 386, {
+            classes: [ 'grey-back', 'white' ],
+            content: [
+                    {
+                        classes: "header-bar white blue-back",
+                        contents: "CAT LOANS!"
+                    },
+                    {
+                        img: './images/cat.png',
+                        classes: 'cat-loan-img'
+                    },
+                    {
+                        classes: 'cat-loan-right',
+                        contents: [
+                                "Meowth is the purr-fect time to invest in the future<br>",
+                                '<br>',
+                                {
+                                        classes: "blink",
+                                        content: "GET A CAT LOAN TODAY!"
+                                }
+                        ]
+                    }
+            ]
+    } );
     teletext.addPage( 390, [
             {
                 classes: "header-bar white pink-back",
@@ -58,10 +86,10 @@ $(function() {
             {
                 classes: "project-list",
                 contents: [
-                        " 601 Play My Code\n",
-                        " 602 PHP Error\n",
-                        " 603 SkyBrush\n",
-                        " 604 Quby Language\n"
+                        " 610 Play My Code\n",
+                        " 620 PHP Error\n",
+                        " 630 SkyBrush\n",
+                        " 640 Quby Language\n"
                 ]
             },
             {
@@ -78,25 +106,55 @@ $(function() {
     ] );
 
     // Play My Code
-    teletext.addPage( 601, [
-            {
-                classes: [
-                        "header-bar",
-                        "white",
-                        "pink-background"
-                ],
-                content: "Play My Code"
-            }
-    ] );
+    teletext.addPage( 610, {
+            classes: [ "pmc-back", "white" ],
+
+            content: [
+                    {
+                        classes: "pmc-header",
+                        content: "Play&#x205F;&#x200a;&#x200a;My&#x205F;&#x200a;&#x200a;Code"
+                    },
+                    {
+                        type: 'p',
+                        content: "A browser based, game building IDE and publishing site"
+                    }
+            ]
+    });
+
+    teletext.addPage( 611, {
+            classes: 'pmc-game',
+            content: '<iframe width="640" height="444" src="http://www.playmycode.com/play/embed/joe/ourobo-ware" marginheight="0" marginwidth="0" scrolling="no" frameborder="0" style="border: none; border-size: 0; overflow: hidden; overflow-x: hidden; overflow-y: hidden;"></iframe>'
+    });
 
     // PHP Error
-    teletext.addPage( 602, [
-            {
-                classes: [ 'header-bar', 'black', 'white-back' ],
-                content: 'PHP Error'
-            }
-    ] );
+    teletext.addPage( 620, {
+            classes: 'white-back',
+            content: [
+                {
+                    classes: [ 'header-left-bar', 'black' ],
+                    content: 'PHP Error'
+                },
 
-    teletext.dial.setNow( 600 );
+                {
+                    classes: [ 'php-error-info black-back', 'white', 'full-width' ],
+                    content: [
+                            'error reporting library for PHP<br>',
+                            '<br>',
+                            'Gives you pretty stack traces<br>',
+                            'and code snippets in the browser,<br>',
+                            'and works for Ajax too.',
+                            '<br>',
+                            '<br>',
+                            {
+                                type: 'a',
+                                href: 'http://phperror.net/',
+                                content: 'available here'
+                            }
+                    ]
+                }
+            ]
+    } );
+
+    teletext.dial.setNow( 620 );
 });
 
