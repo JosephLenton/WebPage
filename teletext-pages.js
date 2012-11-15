@@ -10,8 +10,19 @@ $(function() {
                 ]
             },
             {
+                classes: 'index-room',
+                contents: "Now available in room 119!"
+            },
+            {
                 classes: 'index-left',
-                contents: "blah blah blah, content goes here, blah blah"
+                contents: (([
+                        "hi,",
+                        "&nbsp;&nbsp;&nbsp;&nbsp;I am a PHD student researching visual programming languages for touch devices.",
+                        '',
+                        "I also work with modern web technology, across JS, TypeScript, CSS3, and HTML5.",
+                        '',
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enjoy the site!"
+                ]).join( '<br>' ))
             },
             {
                 type: 'a',
@@ -58,11 +69,23 @@ $(function() {
                     {
                         classes: 'cat-loan-right',
                         contents: [
-                                "Meowth is the purr-fect time to invest in the future<br>",
+                                "Meowth is the right time to invest in your pride<br>",
+                                '<br>',
+
+                                "Why not get a new car, haz a cheeze burger, or buy mice?<br>",
+                                '<br>',
+
+                                "With purr-fect interest rates, we are the right cats for you.<br>",
+                                '<br>',
+
+                                {
+                                        classes: [ "blink", 'center', 'large' ],
+                                        content: "<br>GET A CAT LOAN TODAY!"
+                                },
                                 '<br>',
                                 {
-                                        classes: "blink",
-                                        content: "GET A CAT LOAN TODAY!"
+                                    classes: [ 'small', 'right', 'grey' ],
+                                    content: '<br><br><br>no affiliation with dog-loans'
                                 }
                         ]
                     }
@@ -155,6 +178,6 @@ $(function() {
             ]
     } );
 
-    teletext.dial.setNow( 620 );
+    teletext.dial.setNow( 100 );
 });
 

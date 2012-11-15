@@ -90,9 +90,28 @@ h1 {
 .orange-back {
     background: #ff7f00;
 }
+.grey {
+    color: #aaa;
+}
 
 .full-width {
     width: 100%;
+}
+
+.small {
+    font-size: 9px;
+}
+.large {
+    margin: 6px 0;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
 }
 
 .header-left-bar,
@@ -189,7 +208,8 @@ h1 {
 
 .ad-box,
 .ad-bottom {
-    line-height: 40px;
+    padding-top: 2px;
+    line-height: 38px;
     font-size: 24px;
     text-align: center;
 }
@@ -379,9 +399,17 @@ h1 {
 
 .index-left {
     position: absolute;
-    top: 260px;
+
     left: 9px;
-    width: 300px;
+    top: 240px;
+    width: 320px;
+}
+.index-room {
+    position: absolute;
+
+    top: 208px;
+    text-align: right;
+    right: 186px;
 }
 .index-left-ad {
     position: absolute;
