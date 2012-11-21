@@ -5,12 +5,20 @@
 <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="./teletext.css">
 
+<!--[if lte IE 8]>
+    <style>
+        .no-ie { display: none  !important; }
+        .ie    { display: block !important; }
+    </style>
+<![endif]-->
+
 <div class="overflow">
     <div class="background"></div>
 </div>
 
 <div class="tv">
     <div class="tv-back"></div>
+
     <div class="teletext">
         <div class="top-bar">
             <div class="top-page-number-user">p100</div>
@@ -27,9 +35,10 @@
         <div class="footer">
         </div>
     </div>
-    <div class="tv-glass"></div>
-    <div class="tv-front"></div>
-    <div class="tv-front-inside"></div>
+
+    <div class="tv-glass" unselectable="on"></div>
+    <div class="tv-front" unselectable="on"></div>
+    <div class="tv-front-inside" unselectable="on"></div>
 </div>
 
 <script src="jquery.js"></script>

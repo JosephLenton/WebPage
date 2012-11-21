@@ -38,7 +38,7 @@ $(function() {
                         "390 Horses\n",
                         "600 Projects\n",
                         {
-                            classes: [ 'red-back', 'white' ],
+                            classes: [ 'red-back', 'white', 'no-ie' ],
                             content: '611 Play!'
                         }
                 ]
@@ -85,7 +85,7 @@ $(function() {
                                 '<br>',
                                 {
                                     classes: [ 'small', 'right', 'grey' ],
-                                    content: '<br><br><br>no affiliation with dog-loans'
+                                    content: '<br><br><br>no affiliation with dog-accounts'
                                 }
                         ]
                     }

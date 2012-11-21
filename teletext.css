@@ -421,7 +421,7 @@ h1 {
 .index-right {
     position: absolute;
     right :  9px;
-    bottom:  0;
+    top: 264px;
     white-space: pre;
     font-size  : 24px;
     line-height: 36px;
@@ -449,7 +449,8 @@ h1 {
     position: absolute;
     left: 32px;
     bottom: 0;
-    max-height: 360px;
+    height: 360px;
+    width: 273px;
 }
 
 .php-error-info {
@@ -512,6 +513,7 @@ h1 {
     /*
      * TV Front should ignore interaction.
      */
+    .ie-events,
     .tv-glass,
     .tv-front,
     .tv-front-inside {
@@ -528,12 +530,14 @@ h1 {
     .tv-glass {
         position: absolute;
 
-        background: black;
         width : 691px;
         height: 556px;
 
         left: 117px;
         top : 109px;
+    }
+    .tv-back {
+        background: black;
     }
     .tv-front {
         display: block;
@@ -554,6 +558,10 @@ h1 {
         height:  730px;
     }
     .tv-glass {
+        /* for IE */
+        background: #ddf;
+        filter:alpha(opacity=20);
+
         background: rgba( 220, 220, 255, 0.2 );
 
         border-top-left-radius    : 140px 100px;
@@ -565,6 +573,7 @@ h1 {
            -moz-box-shadow: inset 0 0 240px rgba( 30, 25, 10, 0.5 );
                 box-shadow: inset 0 0 240px rgba( 30, 25, 10, 0.5 );
     }
+    .ie-events,
     .teletext {
         position: absolute;
 
