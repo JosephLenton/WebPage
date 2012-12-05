@@ -49,7 +49,36 @@ $(function() {
      * 200 - My PHD
      */
     teletext.addPage( 200, [
-            "\\\\todo"
+            {
+                classes: 'column-left padded',
+                content: [
+                        'My research is on visual programming languages for touch devices.',
+                        '<br>',
+                        '<br>',
+                        'How can we build software on tablet computers, given their recent dominance?',
+                        '<br>',
+                        '<br>',
+                        'My supervisors are Andrew Howes and Achim Jung.'
+                ]
+            },
+            {
+                classes: 'column-right',
+                content: [
+                        {
+                            classes: 'header-bar right orange-back',
+                            content: 'PHD'
+                        }
+                ]
+            },
+
+            {
+                img: './images/ipad_blocky.png',
+                classes: 'phd-ipad'
+            },
+            {
+                img: './images/nexus-blocky.png',
+                classes: 'phd-nexus'
+            }
     ] );
 
     /**
@@ -178,6 +207,25 @@ $(function() {
             ]
     } );
 
-    teletext.dial.setNow( 100 );
+    function getTeletextQuery() {
+        var href = window.location.toString().split( '?' );
+
+        if ( href.length > 1 ) {
+            var query = href[1].split('&');
+            console.log( query );
+
+            for ( var i = 0; i < query.length; i++ ) {
+                var parts = query[i].split('=');
+
+                if ( parts[0] === 'teletext' ) {
+                    return parseInt( parts[1] );
+                }
+            }
+        }
+
+        return null;
+    }
+    
+    teletext.dial.setNow( getTeletextQuery() || 100 );
 });
 
