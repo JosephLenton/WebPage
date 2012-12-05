@@ -65,7 +65,7 @@ $(function() {
                 classes: 'column-right',
                 content: [
                         {
-                            classes: 'header-bar right orange-back',
+                            classes: 'header-bar right pink-back',
                             content: 'PHD'
                         }
                 ]
