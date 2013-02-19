@@ -19,7 +19,7 @@ $(function() {
     /**
      * How fast a page will refresh, in milliseconds.
      */
-    var REFRESH_SPEED = 10000;
+    var REFRESH_SPEED = 8000;
 
     /**
      * All Teletext pages, stored, in one big sparse array.
