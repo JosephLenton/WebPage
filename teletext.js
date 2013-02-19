@@ -16,14 +16,31 @@ $(function() {
             'Dec'
     ];
 
+    /**
+     * How fast a page will refresh, in milliseconds.
+     */
+    var REFRESH_SPEED = 10000;
+
+    /**
+     * All Teletext pages, stored, in one big sparse array.
+     */
     var pages = [];
 
     var KEY_0 = 48,
         KEY_9 = 57;
 
     var teletext = window['teletext'] = {
+        pageNotFound: function( page ) {
+            teletext.addPage( 404, page );
+        },
+
         addPage: function( number, data ) {
-            pages[number] = data;
+            var pageContents = new Array( arguments.length-1 );
+            for ( var i = 1; i < arguments.length; i++ ) {
+                pageContents[i-1] = arguments[i];
+            }
+
+            pages[number] = pageContents;
         },
 
         dial: {
@@ -76,8 +93,10 @@ $(function() {
                 number = parseInt(number);
                 var page = pages[ number ];
 
-                if ( page ) {
+                if ( page !== undefined ) {
                     teletext.screen.set( number, page );
+                } else {
+                    teletext.screen.set( '404', pages[404] );
                 }
             }
         },
@@ -91,6 +110,27 @@ $(function() {
          */
         screen: {
             blinkTimer: null,
+
+            pageIndex: 0,
+            pages: null,
+
+            pagesCounter: null,
+
+            init: function() {
+                this.pagesCounter = $('.page-counter');
+
+                /*
+                 * Refresh the page every few seconds.
+                 */
+                var self = this;
+
+                setInterval( function() {
+                    if ( self.pages ) {
+                        self.pageIndex = (self.pageIndex+1) % self.pages.length
+                        self.setPage( self.pages[self.pageIndex], self.pageIndex, self.pages.length );
+                    }
+                }, REFRESH_SPEED );
+            },
 
             buildPage: function(data, isRootPage) {
                 var page,
@@ -127,6 +167,10 @@ $(function() {
 
                     iter( data.url || data.href, function(url) {
                         page.attr( 'href', url );
+                    } );
+
+                    iter( data.style, function(style) {
+                        page.attr( 'style', style );
                     } );
 
                     contents = data.content || data.contents;
@@ -167,11 +211,17 @@ $(function() {
                 return page;
             },
 
-
-            set: function(number, data) {
+            set: function( number, pages ) {
                 teletext.topbar.setUserNumber( number );
                 teletext.topbar.setNumber( number );
 
+                this.pages = pages;
+                this.pageIndex = 0;
+
+                this.setPage( pages[0], 0, pages.length );
+            },
+
+            setPage: function(data, currentNum, maxNum) {
                 var newContents = teletext.screen.setupBlinkTimer(
                         teletext.screen.buildPage( data, true )
                 );
@@ -190,6 +240,12 @@ $(function() {
 
                 page.empty();
                 page.append( newContents );
+
+                if ( maxNum <= 1 ) {
+                    teletext.screen.pagesCounter.hide();
+                } else {
+                    teletext.screen.pagesCounter.show().text( currentNum + '/' + maxNum  );
+                }
             }
         },
 

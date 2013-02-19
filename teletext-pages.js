@@ -1,49 +1,129 @@
 "use strict";
 
 $(function() {
-    teletext.addPage( 100, [
-            {
-                classes: [ "index-bar" ],
-                contents: [
-                        "Joseph\nLenton",
-                        { classes: "me-picture" }
-                ]
-            },
-            {
-                classes: 'index-room',
-                contents: "Now available in room 119!"
-            },
-            {
-                classes: 'index-left',
-                contents: (([
-                        "hi,",
-                        "&nbsp;&nbsp;&nbsp;&nbsp;I am a PHD student researching visual programming languages for touch devices.",
-                        '',
-                        "I also work with modern web technology, across JS, TypeScript, CSS3, and HTML5.",
-                        '',
-                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enjoy the site!"
-                ]).join( '<br>' ))
-            },
-            {
-                type: 'a',
-                classes: 'index-email yellow blue-back',
-                content: 'jxl299@cs.bham.ac.uk',
-                href: 'mailto://jxl299@cs.bham.ac.uk'
-            },
-            {
-                classes: 'index-right yellow',
-                contents: [
-                        "104 About\n",
-                        "200 My PHD\n",
-                        "390 Horses\n",
-                        "600 Projects\n",
-                        {
-                            classes: [ 'red-back', 'white', 'no-ie' ],
-                            content: '611 Play!'
-                        }
-                ]
-            }
-    ] );
+    teletext.pageNotFound([{
+            classes: 'center',
+            contents: [
+                    null,
+                    null,
+                    null,
+                    null,
+
+                    null,
+                    null,
+                    null,
+                    null,
+
+                    {
+                        classes: 'header-bar',
+                        style: 'font-size: 128px',
+                        content: '404'
+                    },
+
+                    null,
+                    null,
+                    null,
+
+                    'The page you are looking for, was not found',
+
+                    null,
+                    null,
+
+                    'Type 100 to return to index'
+            ]
+    }])
+
+    teletext.addPage( 100,
+            [
+                {
+                    classes: [ "index-bar" ],
+                    contents: [
+                            "Joseph\nLenton",
+                            { classes: "me-picture" }
+                    ]
+                },
+                {
+                    classes: 'index-room',
+                    contents: "Now available in room 119!"
+                },
+                {
+                    classes: 'index-left',
+                    contents: (([
+                            "hi,",
+                            "&nbsp;&nbsp;&nbsp;&nbsp;I am a PHD student researching visual programming languages for touch devices.",
+                            '',
+                            "I also work with modern web technology, across JS, TypeScript, CSS3, and HTML5.",
+                            '',
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enjoy the site!"
+                    ]).join( '<br>' ))
+                },
+                {
+                    type: 'a',
+                    classes: 'index-email yellow blue-back',
+                    content: 'jxl299@cs.bham.ac.uk',
+                    href: 'mailto://jxl299@cs.bham.ac.uk'
+                },
+                {
+                    classes: 'index-right yellow',
+                    contents: [
+                            "104 About\n",
+                            "200 My PHD\n",
+                            "390 Interests\n",
+                            "600 Projects\n",
+                            {
+                                classes: [ 'red-back', 'white', 'no-ie' ],
+                                content: '611 Play!'
+                            }
+                    ]
+                }
+            ],
+            [
+                {
+                    classes: 'la-jetee-back center',
+                    contents: [
+                            {
+                                classes: 'header-bar white',
+                                contents: 'this site'
+                            },
+
+                            "This page is my own implementation of TeleText.",
+
+                            null,
+                            null,
+                            "To navigate, you use the number pad, and type in one of the teletext codes.",
+
+                            null,
+                            null,
+                            "You then wait ... until it loads ...",
+
+                            null,
+                            null,
+                            "Some pages have multple screens to show; you have to wait to go through them. If you miss a page, you have to wait for it come around,.. again.",
+
+                            null,
+                            null,
+                            "Enjoy!",
+
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+
+                            {
+                                classes: 'center',
+                                contents: [{
+                                    type: 'a',
+                                    href: 'https://github.com/JosephLenton/WebPage',
+
+                                    classes: 'github-fork center green',
+                                    contents: 'you can find the code for this site<br>on github!'
+                                }]
+                            }
+                    ]
+                }
+            ]
+    );
 
     /**
      * 200 - My PHD
@@ -114,7 +194,7 @@ $(function() {
                                 '<br>',
                                 {
                                     classes: [ 'small', 'right', 'grey' ],
-                                    content: '<br><br><br>no affiliation with dog-accounts'
+                                    content: '<br>no affiliation with dog-accounts'
                                 }
                         ]
                     }
@@ -123,7 +203,7 @@ $(function() {
     teletext.addPage( 390, [
             {
                 classes: "header-bar white pink-back",
-                contents: "HORSES!"
+                contents: "Interests"
             }
     ] );
 
@@ -207,18 +287,35 @@ $(function() {
             ]
     } );
 
+    function parseTeletextQuery( str ) {
+        if ( str.indexOf('=') === -1 ) {
+            return parseInt( str ) || undefined;
+        } else {
+            var parts = str.split( '=' );
+
+            if ( parts[0] === 'teletext' ) {
+                return parseInt( parts[1] );
+            }
+        }
+    }
+
     function getTeletextQuery() {
         var href = window.location.toString().split( '?' );
 
         if ( href.length > 1 ) {
-            var query = href[1].split('&');
-            console.log( query );
+            var query = href[1];
 
-            for ( var i = 0; i < query.length; i++ ) {
-                var parts = query[i].split('=');
+            if ( query.indexOf('&') === -1 ) {
+                return parseTeletextQuery( query );
+            } else {
+                var query = query.split('&');
 
-                if ( parts[0] === 'teletext' ) {
-                    return parseInt( parts[1] );
+                for ( var i = 0; i < query.length; i++ ) {
+                    var page = parseTeletextQuery( query[i] );
+
+                    if ( page ) {
+                        return page;
+                    }
                 }
             }
         }

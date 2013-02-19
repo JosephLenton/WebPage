@@ -16,6 +16,7 @@ body {
     color: white;
 
     font-size: 14px;
+    line-height: 15px;
     font-family: 'Press Start 2P', cursive;
 }
 
@@ -78,6 +79,12 @@ h1 {
 .white {
     color: white;
 }
+.pink {
+    color: #ff00fe;
+}
+.green {
+    color: #00ee00;
+}
 .black {
     color: black;
 }
@@ -105,6 +112,12 @@ h1 {
     margin: 6px 0;
     font-size: 18px;
     line-height: 21px;
+}
+
+.bottom-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .center {
@@ -257,6 +270,14 @@ h1 {
 /*
  * Page Specific components.
  */
+
+.la-jetee-back {
+    background: no-repeat center url(images/this-page-back.png);
+    background-position-y: 18px;
+
+    width: 100%;
+    height: 100%;
+}
 
 .pmc-back {
     background: #415168;
@@ -455,7 +476,7 @@ h1 {
 }
 .index-right {
     position: absolute;
-    right :  9px;
+    right :  0;
     top: 264px;
     white-space: pre;
     font-size  : 24px;
@@ -633,6 +654,19 @@ h1 {
             left: 0;
             bottom: 0;
         }
+    .page-counter {
+        display: none;
+
+        background: black;
+        color: white;
+
+        position: absolute;
+        right: 0;
+        bottom: 18px;
+
+        padding: 0 3px;
+    }
+
 .footer,
 .top-bar {
     float: left;
