@@ -52,9 +52,7 @@ $(function() {
                             "hi,",
                             "&nbsp;&nbsp;&nbsp;&nbsp;I am a PHD student researching visual programming languages for touch devices.",
                             '',
-                            "I also work with modern web technology, across JS, TypeScript, CSS3, and HTML5.",
-                            '',
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enjoy the site!"
+                            "I also work with modern web technology, across JS, TypeScript, CSS3, and HTML5."
                     ]).join( '<br>' ))
                 },
                 {
