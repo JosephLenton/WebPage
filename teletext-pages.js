@@ -285,7 +285,7 @@ $(function() {
             ]
     } );
 
-    // PHP Error
+    // SkyBrush
     teletext.addPage( 630, {
             classes: 'black-back',
             content: [
@@ -304,7 +304,7 @@ $(function() {
                             'and lots and lots of JavaScript.',
                             '<br>',
                             '<br>',
-                            'You can include it without your own site,',
+                            'You can include it within your own site,',
                             'if you are in need of a painting application.',
                             '<br>',
                             '<br>',
