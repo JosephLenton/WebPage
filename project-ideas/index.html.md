@@ -94,7 +94,6 @@
 
 <header>
     # Project Ideas
-    ### (best viewed in FireFox)
 </header>
 
 My project ideas,
@@ -241,8 +240,7 @@ Kind of like how the documentation could look if written in a Word file.
 
 It would also allow viewing just the documentation for a code file.
 
-Embeddable Painting Application Improvements
---------------------------------------------
+<h2>Improvements for embeddable Painting application</h2>
 
 I built a standalone, embeddable painting application a while ago,
 called [SkyBrush](http://github.com/PlayMyCode/SkyBrush).
