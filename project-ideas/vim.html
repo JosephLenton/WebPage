@@ -1,0 +1,532 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Z:\git\Slate\src\client\js\lib\platform\check.jsx.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+    html, body {
+        padding: 0;
+        margin: 0;
+
+        background: white;
+        color: black;
+    }
+
+    body {
+        padding: 0 12px 64px 0;
+    }
+
+    .highlight,
+    .highlight font {
+        background: #cde;
+
+        font-family: Segoe UI, Segoe WP, Helvetica Neue, Roboto, sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 400;
+    }
+    .highlight font.title {
+        color: #444 !important;
+        font-weight: 100;
+        font-size: 32px !important;
+
+        font-family: Segoe UI Light, Helvetica !important;
+    }
+    .highlight {
+        padding-left: 24px;
+
+        color: #444;
+        padding-top: 6px 0 12px 0;
+        margin: 64px 0 6px 0;
+
+        border: 1px solid #abc;
+        box-shadow: 0 2px 6px rgba( 0, 30, 50, 0.25 );
+        border-radius: 2px;
+
+        z-index: 100;
+    }
+    .highlight.module,
+    .highlight.module * {
+        background: #cef !important;
+    }
+
+    body, span, font {
+        font-size: 12px;
+        font-family: 'Droid Sans Mono', sans-serif;
+        white-space: nowrap;
+    }
+</style>
+
+</head>
+<body bgcolor="#141414" text="#e0e0e0"><font face="monospace">
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isObject</b></font></span><br>
+<br>
+Tests for a JSON object literal.<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;isObject(&nbsp;{} ) <font color="#535d8d">// -&gt; true</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;isObject(&nbsp;<font color="#335588">new</font>&nbsp;FooBar() ) <font color="#535d8d">// -&gt; false</font><br>
+<br>
+Specifically it <i>*only*</i>&nbsp;does object literals, and not regular objects.<br>
+<br>
+For regular objects do ...<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;obj <font color="#335588">instanceof</font>&nbsp;<font color="#af4f4b">Object</font><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;obj The object to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True if it is an object, false if not.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isObject'</font>] = <font color="#335588">function</font>(&nbsp;obj ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;obj !== <font color="#335588">undefined</font>&nbsp;&amp;&amp; obj !== <font color="#335588">null</font>&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;proto = obj.__proto__;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;proto !== <font color="#335588">undefined</font>&nbsp;&amp;&amp; proto !== <font color="#335588">null</font>&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;proto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; === objPrototype&nbsp;&nbsp; &amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; proto.constructor === objConstructor ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;<font color="#af4a2c">false</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isFunction</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;f The value to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True if the function is a function primitive, or Function object.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isFunction'</font>] = <font color="#335588">function</font>(&nbsp;f ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;f === <font color="#408a2f">'function'</font>&nbsp;) || (&nbsp;f <font color="#335588">instanceof</font>&nbsp;<font class="title">Function</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isNumber</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;n The value to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True if 'n' is a primitive number, or a Number object.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isNumber'</font>] = <font color="#335588">function</font>(&nbsp;n ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;n === <font color="#408a2f">'number'</font>&nbsp;) || (&nbsp;n <font color="#335588">instanceof</font>&nbsp;<font class="title">Number</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isNumeric</b></font></span><br>
+<br>
+Returns true if the value is like a number.<br>
+This is either an actual number, or a string which represents one.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;str The string to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True, if given a number, or if it looks like a number, otherwise false.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isNumeric'</font>] = <font color="#335588">function</font>(&nbsp;str ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;str === <font color="#408a2f">'number'</font>&nbsp;) ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (&nbsp;str <font color="#335588">instanceof</font>&nbsp;<font class="title">Number</font>&nbsp;&nbsp; ) ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (&nbsp;<font class="title">String</font>(str).search(&nbsp;<font color="#408a2f">/^</font><font class="title">\s</font><font color="#408a2f">*(</font><font class="title">\+</font><font color="#408a2f">|-)?((</font><font class="title">\d</font><font color="#408a2f">+(</font><font class="title">\.\d</font><font color="#408a2f">+)?)|(</font><font class="title">\.\d</font><font color="#408a2f">+))</font><font class="title">\s</font><font color="#408a2f">*$/</font>&nbsp;) !== -1&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isString</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;str The value to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True if the given value, is a string primitive or a String object.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isString'</font>] = <font color="#335588">function</font>(&nbsp;str ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;str === <font color="#408a2f">'string'</font>&nbsp;) || (&nbsp;str <font color="#335588">instanceof</font>&nbsp;<font class="title">String</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isLiteral</b></font></span><br>
+<br>
+Returns true or false, if the object given is a primitive value, including<br>
+undefined and null, or one of the objects that can also represent them (such<br>
+as Number or String).<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;obj The value to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True if the object is null, undefined, true, false, a string or a number.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isLiteral'</font>] = <font color="#335588">function</font>(obj) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;isString(obj) ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isNumber(obj) ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obj === <font color="#335588">undefined</font>&nbsp;||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obj === <font color="#335588">null</font>&nbsp;||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obj === <font color="#af4a2c">true</font>&nbsp;||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obj === <font color="#af4a2c">false</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isArrayArguments</b></font></span><br>
+<br>
+You cannot be absolutely certain an 'arguments' is an 'arguments', so takes an<br>
+educated guess. That means it may not be 100% correct. However in practice, you<br>
+would have to build an object that looks like an array 'arguments', to fool<br>
+this.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;arr The object to test, for being an Array or arguments.<br>
+<font color="#af4a2c">@return</font>&nbsp;True if the object is an array, or believed to be an array arguments.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isArrayArguments'</font>] = <font color="#335588">function</font>(&nbsp;arr ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;(&nbsp;arr <font color="#335588">instanceof</font>&nbsp;<font class="title">Array</font>&nbsp;) ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr !== <font color="#335588">undefined</font>&nbsp;&amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr !== <font color="#335588">null</font>&nbsp;&amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr.constructor === argsConstructor &amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr.length !== <font color="#335588">undefined</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;isArray</b></font></span><br>
+<br>
+This does not include testring for 'arguments'; they will fail this test. To<br>
+include them, use 'isArrayArguments'.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;arr The value to test.<br>
+<font color="#af4a2c">@return</font>&nbsp;True, if the object given is an array object.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">'isArray'</font>] = <font color="#335588">function</font>(&nbsp;arr ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;(&nbsp;arr <font color="#335588">instanceof</font>&nbsp;<font class="title">Array</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight module">
+<br>
+<span><font class="title"><b>Assertions</b></font></span><br>
+<br>
+These are a list of assertion checking functions, which ensure that what is<br>
+given matches the definition of the assertion, and if so, nothing will happen.<br>
+<br>
+If they do not, an AssertionError is thrown.<br>
+<br>
+The functions optionally take a message, and will print out any extra arguments<br>
+to console.log.<br>
+<br>
+All of the tests take the form:<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;assertionFun(&nbsp;test, errorMessage, ... consoleArguments )<br>
+<br>
+The test is whatever is being checked, and the optional errorMessage is<br>
+displayed if the assertion fails.<br>
+<br>
+The 'consoleArguments', is 1 or more optional values, which will be printed to<br>
+the console. That is useful for adding debugging information on why an<br>
+assertion fails.<br>
+<br>
+</div>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;Assertion Error</b></font></span><br>
+<br>
+An Error type, specific for assertions.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;AssertionError = <font color="#335588">function</font>(&nbsp;msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;! msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg = <font color="#408a2f">&quot;assertion failed&quot;</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error.call(&nbsp;<font color="#335588">this</font>, msg );<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">this</font>.name = <font color="#408a2f">&quot;AssertionError&quot;</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">this</font>.message = msg;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;errStr = <font color="#408a2f">''</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;scriptLine;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">try</font>&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;thisStack;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;<font color="#335588">this</font>.stack ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;thisStack = <font color="#335588">this</font>.stack;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scriptLine = thisStack.split(&nbsp;<font color="#408a2f">&quot;</font><font class="title">\n</font><font color="#408a2f">&quot;</font>&nbsp;)[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;scriptLine ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scriptLine = scriptLine.replace(&nbsp;<font color="#408a2f">/:[0-9]+:[0-9]+$/</font>, <font color="#408a2f">''</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scriptLine = scriptLine.replace(&nbsp;<font color="#408a2f">/^.* /</font>, <font color="#408a2f">''</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;<font color="#335588">new</font>&nbsp;Error();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <font color="#335588">catch</font>&nbsp;(&nbsp;err ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;errStack = err.stack.split(<font color="#408a2f">&quot;</font><font class="title">\n</font><font color="#408a2f">&quot;</font>);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">for</font>&nbsp;(&nbsp;<font color="#335588">var</font>&nbsp;i = 1; i &lt; errStack.length; i++ ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;errStack[i].indexOf(&nbsp;scriptLine ) === -1&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errStr = errStack.slice(i).join(&nbsp;<font color="#408a2f">&quot;</font><font class="title">\n</font><font color="#408a2f">&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">break</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;errStr === <font color="#408a2f">''</font>&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errStr = errStack.join(&nbsp;<font color="#408a2f">&quot;</font><font class="title">\n</font><font color="#408a2f">&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.error(&nbsp;<font color="#408a2f">'Assertion Error, '</font>&nbsp;+ msg );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">for</font>&nbsp;(&nbsp;<font color="#335588">var</font>&nbsp;i = 1; i &lt; arguments.length; i++ ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(&nbsp;arguments[i] );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;errStr !== <font color="#408a2f">''</font>&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.error(&nbsp;<font color="#408a2f">&quot;</font><font class="title">\n</font><font color="#408a2f">&quot;</font>&nbsp;+ errStr );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;AssertionError.prototype = <font color="#335588">new</font>&nbsp;<font class="title">Error</font>();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;AssertionError.prototype.constructor = AssertionError;<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;newAssertion</b></font></span><br>
+<br>
+A helper method, for building the AssertionError object.<br>
+<br>
+It is used, to move the parameters around, from the format the assertion<br>
+functions use, to match that of the AssertionError.<br>
+<br>
+In the error, the msg is the first parameter, and in the functions, it is the<br>
+second.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;args The arguments for the new AssertionError.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;newAssertionError = <font color="#335588">function</font>(&nbsp;args, altMsg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;msg = args[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;args[1] = args[0];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;args[0] = msg || altMsg;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;err = <font class="title">Object</font>.create(&nbsp;AssertionError );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AssertionError.apply(&nbsp;err, args );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">return</font>&nbsp;err;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;logError</b></font></span><br>
+<br>
+A shorthand alternative to performing<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;<font color="#335588">new</font>&nbsp;Error(&nbsp;<font color="#408a2f">&quot;whatever&quot;</font>&nbsp;)<br>
+<br>
+Throws a new Error object,<br>
+which displays the message given.<br>
+<br>
+What is unique about this <font color="#335588">function</font>,<br>
+is that it will also print out all of the<br>
+arguments given, before it throws the error.<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;logError(&nbsp;<font color="#408a2f">&quot;some-error&quot;</font>, a, b, c )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+<font color="#535d8d">&nbsp;&nbsp;&nbsp;&nbsp;// equivalent to ...</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&nbsp;a );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&nbsp;b );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&nbsp;c );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;<font color="#335588">new</font>&nbsp;Error(&nbsp;<font color="#408a2f">&quot;some-error&quot;</font>&nbsp;);<br>
+<br>
+This allows you to have console.log +<br>
+throw new Error, built together, as one.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;msg The message to display in the error.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;logError&quot;</font>] = <font color="#335588">function</font>(&nbsp;msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">var</font>&nbsp;err = <font class="title">Object</font>.create(&nbsp;AssertionError.prototype );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AssertionError.apply(&nbsp;err, arguments );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;err;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assert</b></font></span><br>
+<br>
+Note that 0 and empty strings, will not cause failure.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;test<br>
+<font color="#af4a2c">@param</font>&nbsp;msg<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assert&quot;</font>] = <font color="#335588">function</font>(&nbsp;test, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;test === <font color="#335588">undefined</font>&nbsp;|| test === <font color="#335588">null</font>&nbsp;|| test === <font color="#af4a2c">false</font>&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertNot</b></font></span><br>
+<br>
+Throws an assertion error, if what is given if truthy.<br>
+<br>
+Note that 0 and empty strings, will cause failure.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;test<br>
+<font color="#af4a2c">@param</font>&nbsp;msg<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertNot&quot;</font>] = <font color="#335588">function</font>(&nbsp;test, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test !== <font color="#af4a2c">false</font>&nbsp;&amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test !== <font color="#335588">null</font>&nbsp;&amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test !== <font color="#335588">undefined</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;item is truthy&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertUnreachable</b></font></span><br>
+<br>
+Displays a generic error message, that the current location in code, is meant<br>
+to be unreachable. So something has gone wrong.<br>
+<br>
+This always throws an assertion error.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertUnreachable&quot;</font>] = <font color="#335588">function</font>(&nbsp;msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(&nbsp;<font color="#af4a2c">false</font>, msg || <font color="#408a2f">&quot;this section of code should never be reached&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertObject</b></font></span><br>
+<br>
+Throws an assertion error, if the object given is <i>*not*</i>&nbsp;a JSON Object literal.<br>
+So regular objects, they will throw an assertion. It's only the '{ }' style<br>
+objects that this allows.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertObject&quot;</font>] = <font color="#335588">function</font>(&nbsp;obj, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;! isObject(obj) ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;code expected a JSON object literal&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertLiteral</b></font></span><br>
+<br>
+Throws an AssertionError if the value given is not<br>
+a literal value.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;obj<br>
+<font color="#af4a2c">@param</font>&nbsp;msg<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertLiteral&quot;</font>] = <font color="#335588">function</font>(&nbsp;obj, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;! isLiteral(obj) ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;primitive value expected&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertFunction</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;f A function object to test.<br>
+<font color="#af4a2c">@param</font>&nbsp;msg The message to display if the test fails.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertFunction&quot;</font>] = <font color="#335588">function</font>(&nbsp;f, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;f !== <font color="#408a2f">'function'</font>&nbsp;&amp;&amp; !(f <font color="#335588">instanceof</font>&nbsp;<font class="title">Function</font>) ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;function expected&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertBool</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;f The boolean value to test.<br>
+<font color="#af4a2c">@param</font>&nbsp;msg The error message on failure.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertBool&quot;</font>] = <font color="#335588">function</font>(&nbsp;f, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;f !== <font color="#af4a2c">true</font>&nbsp;&amp;&amp; f !== <font color="#af4a2c">false</font>&nbsp;) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;boolean expected&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertArray</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;arr The array to test.<br>
+<font color="#af4a2c">@param</font>&nbsp;msg The error message.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertArray&quot;</font>] = <font color="#335588">function</font>(&nbsp;arr, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;! (arr <font color="#335588">instanceof</font>&nbsp;<font class="title">Array</font>) &amp;&amp; (arr.length === <font color="#335588">undefined</font>) ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;array expected&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertString</b></font></span><br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;str The string to test against.<br>
+<font color="#af4a2c">@param</font>&nbsp;msg The error message to show.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertString&quot;</font>] = <font color="#335588">function</font>(&nbsp;str, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;str !== <font color="#408a2f">'string'</font>&nbsp;&amp;&amp; !(str <font color="#335588">instanceof</font>&nbsp;<font class="title">String</font>) ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;string expected&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+<div class="highlight">
+<br>
+<font class="title"></font><span><font class="title"><b>&nbsp;assertNumber</b></font></span><br>
+<br>
+This includes both number primitives, and Number objects.<br>
+<br>
+<font color="#af4a2c">@param</font>&nbsp;n The number to check.<br>
+<font color="#af4a2c">@param</font>&nbsp;msg An optional error message.<br>
+<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">window</font>[<font color="#408a2f">&quot;assertNumber&quot;</font>] = <font color="#335588">function</font>(&nbsp;n, msg ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">if</font>&nbsp;(&nbsp;<font color="#335588">typeof</font>&nbsp;n !== <font color="#408a2f">'number'</font>&nbsp;&amp;&amp; !(n <font color="#335588">instanceof</font>&nbsp;<font class="title">Number</font>) ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#335588">throw</font>&nbsp;newAssertionError(&nbsp;arguments, <font color="#408a2f">&quot;number expected&quot;</font>&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+</font></body>
+</html>
