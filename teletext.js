@@ -116,6 +116,8 @@ $(function() {
 
             pagesCounter: null,
 
+            flicker: true,
+
             init: function() {
                 this.pagesCounter = $('.page-counter');
 
@@ -125,7 +127,7 @@ $(function() {
                 var self = this;
 
                 setInterval( function() {
-                    if ( self.pages ) {
+                    if ( self.pages && self.flicker ) {
                         self.pageIndex = (self.pageIndex+1) % self.pages.length
                         self.setPage( self.pages[self.pageIndex], self.pageIndex, self.pages.length );
                     }
@@ -246,6 +248,9 @@ $(function() {
                 } else {
                     teletext.screen.pagesCounter.show().text( (currentNum+1) + '/' + maxNum  );
                 }
+
+                this.flicker = ! newContents.hasClass( 'no-flicker' );
+                console.log( this.flicker );
             }
         },
 

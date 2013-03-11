@@ -252,7 +252,7 @@ $(function() {
     });
 
     teletext.addPage( 611, {
-            classes: 'pmc-game',
+            classes: 'pmc-game no-flicker',
             content: '<iframe width="640" height="444" src="http://www.playmycode.com/play/embed/joe/ourobo-ware" marginheight="0" marginwidth="0" scrolling="no" frameborder="0" style="border: none; border-size: 0; overflow: hidden; overflow-x: hidden; overflow-y: hidden;"></iframe>'
     });
 
@@ -279,6 +279,47 @@ $(function() {
                                 type: 'a',
                                 href: 'http://phperror.net/',
                                 content: 'available here'
+                            }
+                    ]
+                }
+            ]
+    } );
+
+    // PHP Error
+    teletext.addPage( 630, {
+            classes: 'black-back',
+            content: [
+                {
+                    classes: 'skybrush-logo',
+                    img: './images/skybrush_logo.png',
+                    alt: 'skybrush'
+                },
+
+                {
+                    style: 'margin-top: -20px;',
+                    classes: [ 'white', 'full-width', 'center' ],
+                    content: [
+                            'A HTML5 powered painting application<br>',
+                            'built using HTML canvas, CSS3,<br>',
+                            'and lots and lots of JavaScript.',
+                            '<br>',
+                            '<br>',
+                            'You can include it without your own site,',
+                            'if you are in need of a painting application.',
+                            '<br>',
+                            '<br>',
+
+                            {
+                                type: 'a',
+                                href: 'http://studiofortress.com/skybrush',
+                                content: 'try it online'
+                            },
+                            '<br>',
+                            '<br>',
+                            {
+                                type: 'a',
+                                href: 'http://github.com/PlayMyCode/SkyBrush',
+                                content: 'available on GitHub'
                             }
                     ]
                 }
