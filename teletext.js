@@ -244,7 +244,7 @@ $(function() {
                 if ( maxNum <= 1 ) {
                     teletext.screen.pagesCounter.hide();
                 } else {
-                    teletext.screen.pagesCounter.show().text( currentNum + '/' + maxNum  );
+                    teletext.screen.pagesCounter.show().text( (currentNum+1) + '/' + maxNum  );
                 }
             }
         },
