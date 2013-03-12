@@ -134,7 +134,7 @@ $(function() {
                 }, REFRESH_SPEED );
             },
 
-            buildPage: function(data, isRootPage) {
+            buildPage: function(data) {
                 var page,
                     contents;
 
@@ -178,16 +178,16 @@ $(function() {
                     contents = data.content || data.contents;
                 }
 
-                iter( contents, function(child) {
-                    if ( typeof child === 'string' || child instanceof String ) {
-                        page.append( child );
-                    } else {
-                        page.append( teletext.screen.buildPage(child, false) );
-                    }
-                } );
-
-                if ( isRootPage ) {
-                    page.addClass( 'teletext-internal-page' );
+                if ( ! (contents instanceof Array) && (contents instanceof Object) ) {
+                    page.append( teletext.screen.buildPage(contents) );
+                } else {
+                    iter( contents, function(child) {
+                        if ( typeof child === 'string' || child instanceof String ) {
+                            page.append( child );
+                        } else {
+                            page.append( teletext.screen.buildPage(child) );
+                        }
+                    } );
                 }
 
                 return page;
@@ -224,9 +224,10 @@ $(function() {
             },
 
             setPage: function(data, currentNum, maxNum) {
-                var newContents = teletext.screen.setupBlinkTimer(
-                        teletext.screen.buildPage( data, true )
-                );
+                var internalPage = teletext.screen.buildPage( data, true )
+                internalPage.addClass( 'teletext-internal-page' );
+
+                var newContents = teletext.screen.setupBlinkTimer( internalPage );
                 var page = $('.teletext-page');
 
                 var offset = 100;
