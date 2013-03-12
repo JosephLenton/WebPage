@@ -50,8 +50,17 @@ h1 {
 .white-back {
     background: whitesmoke;
 }
+.dark-red-back {
+    background: #600;
+}
+.dark-red {
+    color: #600;
+}
 .red-back {
     background: red;
+}
+.red {
+    color: red;
 }
 .red-blue-back {
     background: #ff0000; /* Old browsers */
@@ -64,6 +73,21 @@ h1 {
 }
 .blue-back {
     background: blue;
+}
+.blue {
+    color: blue;
+}
+.blue-light-back {
+    background: #48e;
+}
+.light-blue {
+    color: #48e;
+}
+.cyan {
+    color: cyan;
+}
+.cyan-back {
+    background: cyan;
 }
 .gray-back,
 .grey-back {
@@ -91,11 +115,26 @@ h1 {
 .yellow {
     color: yellow;
 }
+.yellow-back {
+    background: yellow;
+}
+.dark-yellow-back {
+    background: #770;
+}
+.dark-yellow {
+    color: #770;
+}
 .orange {
     color: #ff7f00;
 }
 .orange-back {
     background: #ff7f00;
+}
+.dark-orange-back {
+    background: #7f3f00;
+}
+.dark-orange {
+    color: #7f3f00;
 }
 .grey {
     color: #aaa;
@@ -137,6 +176,14 @@ a.full-width {
     padding: 6px;
 }
 
+.pre {
+    white-space: pre;
+}
+
+.column-center {
+    width: 300px;
+    margin: 0 auto;
+}
 .column-left,
 .column-right {
     width: 50%;
@@ -517,6 +564,11 @@ a.full-width {
     bottom: 0;
     height: 360px;
     width: 273px;
+}
+
+.php-error-code {
+    width: 572px;
+    margin: 32px auto;
 }
 
 .php-error-info {

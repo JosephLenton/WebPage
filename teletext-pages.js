@@ -258,29 +258,67 @@ $(function() {
 
     // PHP Error
     teletext.addPage( 620, {
-            classes: 'white-back',
+            classes: 'black-back',
             content: [
                 {
-                    classes: [ 'header-left-bar', 'black' ],
-                    content: 'PHP Error'
+                        classes: 'dark-red-back',
+                        content: {
+                                classes: [ 'header-left-bar', 'white' ],
+                                content: 'PHP Error'
+                        }
+                },
+
+                {
+                        classes: 'pre padded php-error-code',
+                        content: [
+                                '<span class="dark-orange">class</span> <span class="yellow">Teletext</span> <span class="dark-orange">extends</span> <span class="yellow">View</span> {<br>',
+                                '    <span class="dark-orange">public</span> <span class="dark-orange">void</span> <span class="yellow">renderBamboozle</span>() {<br>',
+                                '        <span class="light-blue">$quiz</span> = <span class="light-blue">$this</span>-&gt;<span class="yellow">getQuiz</span>(<span class="green">&quot;today&quot;</span>);<br>',
+                                {
+                                    classes: 'dark-red-back',
+                                    content: '        <span class="light-blue">$this</span>-&gt;<span class="yellow">view</span>( <span class="light-blue">$quiz</span> )'
+                                },
+                                '    }<br>',
+                                '}<br>'
+                        ]
                 },
 
                 {
                     classes: [ 'php-error-info black-back', 'white', 'full-width' ],
                     content: [
-                            'error reporting library for PHP<br>',
-                            '<br>',
-                            'Gives you pretty stack traces<br>',
-                            'and code snippets in the browser,<br>',
-                            'and works for Ajax too.',
-                            '<br>',
-                            '<br>',
                             {
-                                type: 'a',
-                                href: 'http://phperror.net/',
-                                content: 'available here'
+                                    classes: 'green full-width',
+                                    content: '<span class="white">121</span> error reporting library for PHP'
+                            },
+                            {
+                                    classes: 'green full-width',
+                                    content: '<span class="white">490</span> gives you stack traces with code'
+                            },
+                            {
+                                    classes: 'yellow full-width',
+                                    content: '<span class="white">907</span> all in the browser, on error'
+                            },
+                            {
+                                    classes: 'dark-red-back full-width',
+                                    content: '<span class="white">334</span> displays for Ajax errors too'
+                            },
+                            {
+                                    classes: 'red full-width',
+                                    content: '<span class="white">&nbsp;&nbsp;5</span> works automatically'
+                            },
+                            {
+                                    classes: 'red full-width',
+                                    content: '<span class="white">&nbsp;82</span> almost no setup required'
                             }
                     ]
+                },
+
+                {
+                        style: 'margin-top: 36px',
+                        classes: 'block center padded',
+                        type: 'a',
+                        href: 'http://phperror.net/',
+                        content: 'available here'
                 }
             ]
     } );
