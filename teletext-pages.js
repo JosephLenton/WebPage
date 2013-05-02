@@ -44,7 +44,7 @@ $(function() {
                 },
                 {
                     classes: 'index-room',
-                    contents: "Now available in room 119!"
+                    contents: "Now available in room 117!"
                 },
                 {
                     classes: 'index-left',
